@@ -36,6 +36,14 @@ const ToDo = () => {
     setPendingTasks(pendingTasks.filter((_, i) => i !== index));
   };
 
+  const handleDeletePending = (index) => {
+    setPendingTasks(pendingTasks.filter((_, i) => i !== index));
+  };
+
+  const handleDeleteCompleted = (index) => {
+    setCompletedTasks(completedTasks.filter((_, i) => i !== index));
+  };
+
   return (
     <div style={styles.container}>
       <h2>📝 To-Do List</h2>
@@ -64,6 +72,13 @@ const ToDo = () => {
                   onChange={() => handleCompleteTask(index)}
                 />
                 <span style={styles.taskText}>{task}</span>
+                <button
+                  onClick={() => handleDeletePending(index)}
+                  style={styles.deleteButton}
+                  title="Delete Task"
+                >
+                  🗑️
+                </button>
               </li>
             ))}
           </ul>
@@ -79,6 +94,13 @@ const ToDo = () => {
             {completedTasks.map((task, index) => (
               <li key={index} style={styles.completedTask}>
                 {task}
+                <button
+                  onClick={() => handleDeleteCompleted(index)}
+                  style={styles.deleteButton}
+                  title="Delete Task"
+                >
+                  🗑️
+                </button>
               </li>
             ))}
           </ul>
@@ -127,11 +149,22 @@ const styles = {
   },
   taskText: {
     marginLeft: '10px',
+    flex: 1,
   },
   completedTask: {
     textDecoration: 'line-through',
     color: 'gray',
     marginBottom: '10px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  deleteButton: {
+    marginLeft: '10px',
+    backgroundColor: 'transparent',
+    border: 'none',
+    cursor: 'pointer',
+    fontSize: '16px',
   },
 };
 
