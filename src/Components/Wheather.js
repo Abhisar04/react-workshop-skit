@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const API_KEY = '888496ee7ee6dfb2e5e03eea8fe2bc2d'; // <-- Replace with your API key
+const API_KEY = '0ea57cb732bdcb4c66fa74cd09c62f65'; 
 
 const Wheather = () => {
   const [city, setCity] = useState('');
@@ -8,39 +8,40 @@ const Wheather = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const fetchWeather = async () => {
-    if (!city.trim()) {
-      setError('Please enter a city name.');
-      setWeather(null);
-      return;
-    }
-    setLoading(true);
-    setError('');
+const fetchWeather = async () => {
+  if (!city.trim()) {
+    setError('Please enter a city name.');
     setWeather(null);
+    return;
+  }
+  setLoading(true);
+  setError('');
+  setWeather(null);
 
-    try {
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`
-      );
-      const data = await response.json();
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`
+    );
+    const data = await response.json();
 
-      if (response.ok) {
-        setWeather(data);
-        setError('');
-      } else {
-        setError(data.message || 'City not found.');
-      }
-    } catch (err) {
-      setError('Failed to fetch weather. Try again.');
+    if (response.ok) {
+      setWeather(data);
+      setError('');
+    } else {
+      setError(data.message || 'City not found.');
     }
-    setLoading(false);
-  };
+  } catch (err) {
+    setError('Failed to fetch weather. Try again.');
+  }
+  setLoading(false);
+};
+
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') fetchWeather();
   };
 
-  // Simple background color based on main weather condition
+ 
   const getBackground = () => {
     if (!weather) return '#f0f0f0';
     const main = weather.weather[0].main.toLowerCase();

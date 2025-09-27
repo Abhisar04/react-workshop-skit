@@ -9,7 +9,7 @@ import Wheather from './Components/Wheather';
 
 const RedirectScreen = () => {
   const navigate = useNavigate();
-  const [secondsLeft, setSecondsLeft] = useState(15);  // countdown state
+  const [secondsLeft, setSecondsLeft] = useState(5);  // countdown state
 
   useEffect(() => {
     if (secondsLeft === 0) {

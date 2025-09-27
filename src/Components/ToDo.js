@@ -60,7 +60,7 @@ const ToDo = () => {
       </div>
 
       <div style={styles.section}>
-        <h3>📌 Pending Tasks</h3>
+        <h3>Pending Tasks</h3>
         {pendingTasks.length === 0 ? (
           <p>No pending tasks</p>
         ) : (
@@ -86,7 +86,7 @@ const ToDo = () => {
       </div>
 
       <div style={styles.section}>
-        <h3>✅ Completed Tasks</h3>
+        <h3> Completed Tasks</h3>
         {completedTasks.length === 0 ? (
           <p>No completed tasks</p>
         ) : (
